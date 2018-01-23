@@ -1,10 +1,20 @@
+# Ignore precompile and spec ruby files.
 *.rbc
 capybara-*.html
 .rspec
+
+# Ignore log and temp files.
 log
 tmp
+!/log/.keep
+!/tmp/.keep
+yarn-error.log
+
+# Ignore the default SQLite database.
 db/*.sqlite3
 db/*.sqlite3-journal
+
+# Ignore misc settings.
 public/system
 coverage/
 spec/tmp
@@ -12,32 +22,32 @@ spec/tmp
 rerun.txt
 pickle-email-*.html
 
-# TODO Comment out this rule if you are OK with secrets being uploaded to the repo
+# Ignore config settings.
+config/secrets.yml
 config/initializers/secret_token.rb
 
-# Only include if you have production secrets in this file, which is no longer a Rails default
-# config/secrets.yml
-
-# dotenv
-# TODO Comment out this rule if environment variables can be committed
+# Ignore environment variables.
 .env
 
-## Environment normalization:
+## Ignore environment settings.
 .bundle
 vendor/bundle
+Gemfile.lock
+.ruby-version
+.ruby-gemset
 
-# these should all be checked in to normalize the environment:
-# Gemfile.lock, .ruby-version, .ruby-gemset
-
-# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+# Ignore rvm settings.
 .rvmrc
 
-# if using bower-rails ignore default bower_components path bower.json files
+# Ignore bower components (if using bower-rails).
 vendor/assets/bower_components
 *.bowerrc
 bower.json
 
-# Ignore pow environment settings
+# Ignore node modules.
+node_modules
+
+# Ignore pow environment settings.
 .powenv
 
 # Ignore Byebug command history file.
