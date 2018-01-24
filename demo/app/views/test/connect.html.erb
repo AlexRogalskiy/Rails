@@ -1,0 +1,9 @@
+<h1>Test#connect</h1>
+<p>Find me in app/views/test/connect.html.erb</p>
+<p><%= @time %></p>
+<p><%= link_to "link to disconnect", test_disconnect_path %></p>
+<p>
+	<% for file in @files %>
+	file name: <br /> <%= file %>
+	<% end %>
+</p>
