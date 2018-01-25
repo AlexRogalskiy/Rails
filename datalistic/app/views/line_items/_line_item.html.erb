@@ -1,0 +1,9 @@
+<% if line_item == @current_item %>
+	<div class="cart_item current_item" id="current_item">
+<% else %>
+	<div class="cart_item">
+<% end %>
+		<span class="item_quantity"><%= line_item.quantity %> &times;</span>
+		<span class="item_title"><%= line_item.product.title %></span>
+		<span class="item_price"><%= number_to_currency(line_item.total_price) %></span>
+	</div>

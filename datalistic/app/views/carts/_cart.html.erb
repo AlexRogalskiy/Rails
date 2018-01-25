@@ -1,0 +1,12 @@
+<h2 class="cart_header">Buy Cart</h2>
+<div class="cart_items">
+  <%= render(cart.line_items) %>
+</div>
+
+<div class="cart_total total_line">
+	<span class="total_title">Total:</span>
+	<span class="total_value total_cell"><%= number_to_currency(cart.total_price) %></span>
+</div>
+
+<%= button_to 'Empty cart', cart, method: :delete,
+    data: { confirm: 'Are you sure?' } %>
