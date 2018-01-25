@@ -5,9 +5,18 @@
 <h2>Datalistic Cart</h2>
 <ul>    
   <% @cart.line_items.each do |item| %>
+    <li><%= item.quantity %> &times;</li>
     <li><%= item.product.title %></li>
+    <li class="item_price"><%= number_to_currency(item.total_price) %></li>
   <% end %>
 </ul>
 
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+
+<div class="total_line">
+	Total:
+	<div class="total_cell"><%= number_to_currency(@cart.total_price) %></div>
+</div>
+
+<%= button_to 'Empty cart', @cart, method: :delete,
+    data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back', store_path %>
