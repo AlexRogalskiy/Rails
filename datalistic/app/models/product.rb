@@ -6,6 +6,7 @@ class Product < ApplicationRecord
 
 	validates :title, :description, :image_url, presence: true
   validates :price, numericality: {greater_than_or_equal_to: 0.01}
+  validates :discount, numericality: {greater_than_or_equal_to: 0.01, lower_than_or_equal_to: 1.00}
 
 	validates :title, uniqueness: true
 	validates :title, length: {minimum: 10}
@@ -17,6 +18,10 @@ class Product < ApplicationRecord
   	def self.latest
     	Product.order(:updated_at).last
   	end
+
+    def total_price
+      price * discount
+    end
 
     private
 

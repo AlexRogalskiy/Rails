@@ -2,15 +2,15 @@
 
 one:
   product: ruby
-  #cart: one
-  order: one
+  cart: one
+  #order: one
 
 two:
   product: ruby
-  #cart: one
-  order: one
+  cart: one
+  #order: one
 
 ruby:
   product: ruby
-  #cart: ruby
-  order: one
+  cart: ruby
+  #order: one

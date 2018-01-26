@@ -78,10 +78,4 @@ class CartsController < ApplicationController
       logger.error "Attempt to access invalid cart #{params[:id]}"
       redirect_to store_url, notice: 'Invalid cart'
     end
-
-    def total
-      sum = 0
-      @cart.line_items.each {|item| sum += item.price}
-      sum
-    end
 end
