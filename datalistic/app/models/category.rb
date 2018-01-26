@@ -1,8 +1,12 @@
 class Category < ApplicationRecord
-	has_many :products
+	belongs_to :category
+	has_many :products, inverse_of: :category
+	validates_associated :products
 
 	validates :title, :description, :order, presence: true
-	validates :title, uniqueness: true
-	validates :title, length: {minimum: 5}
+	
+	validates_uniqueness_of :title, :scope => [:category_id]
+
+	validates :title, length: {minimum: 5, maximum: 100}
 	validates :order, numericality: {greater_than_or_equal_to: 0}
 end

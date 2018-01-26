@@ -4,12 +4,8 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
-  title: Dave Thomas
-  description: MyText
-  order: 1
-
-two:
-  title: Dave2 Thomas
-  description: MyText
-  order: 1
+one: {}
+# column: value
+#
+two: {}
+# column: value

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126142931) do
+ActiveRecord::Schema.define(version: 20180126202444) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20180126142931) do
     t.integer "order", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_categories_on_category_id"
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -35,6 +37,19 @@ ActiveRecord::Schema.define(version: 20180126142931) do
     t.decimal "discount", precision: 8, scale: 2, default: "1.0"
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["product_id"], name: "index_line_items_on_product_id"
+  end
+
+  create_table "order_line_items", force: :cascade do |t|
+    t.integer "quantity", default: 1
+    t.decimal "price", precision: 8, scale: 2
+    t.decimal "discount", precision: 8, scale: 2, default: "1.0"
+    t.string "coupon"
+    t.integer "product_id"
+    t.integer "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_line_items_on_order_id"
+    t.index ["product_id"], name: "index_order_line_items_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -58,6 +73,8 @@ ActiveRecord::Schema.define(version: 20180126142931) do
     t.datetime "updated_at", null: false
     t.decimal "discount", precision: 8, scale: 2, default: "1.0"
     t.integer "category_id"
+    t.integer "limit", default: 0
+    t.integer "vote", default: 0
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 

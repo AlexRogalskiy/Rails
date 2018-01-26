@@ -1,17 +1,22 @@
 class Product < ApplicationRecord
   belongs_to :category
-  has_many :line_items
+  has_many :line_items, inverse_of: :product
+  has_many :order_line_items, inverse_of: :product
   #has_many :orders, through: :line_items
   
   before_destroy :ensure_not_referenced_by_any_line_item
 
   validates :title, :description, :image_url, :price, :category, presence: true
   
+  validates :vote, numericality: {greater_than_or_equal_to: 0}
+
+  validates :limit, numericality: {greater_than_or_equal_to: 0}
+
   validates :price, numericality: {greater_than_or_equal_to: 0.01}
   validates :discount, numericality: {greater_than_or_equal_to: 0.01, lower_than_or_equal_to: 1.00}
 
-  validates :title, uniqueness: true
-  validates :title, length: {minimum: 5}
+  validates :title, uniqueness: { case_sensitive: false }
+  validates :title, length: {minimum: 5, maximum: 100}
 
   validates :image_url, allow_blank: true, format: {
     with:    %r{\.(gif|jpg|png)\Z}i,
@@ -29,8 +34,8 @@ class Product < ApplicationRecord
     private
 
     def ensure_not_referenced_by_any_line_item
-      unless line_items.empty?
-        errors.add(:base, 'Line Items present')
+      unless order_line_items.empty?
+        errors.add(:base, 'Order Line Items present')
         return false
       end
     end
