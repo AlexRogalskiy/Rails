@@ -20,6 +20,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     item = LineItem.new
     item.build_cart
     item.product = products(:ruby)
+    item.price = 1
     item.save!
     #session[:cart_id] = item.cart.id
 

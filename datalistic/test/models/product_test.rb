@@ -14,7 +14,8 @@ class ProductTest < ActiveSupport::TestCase
   test "product price must be positive" do
     product = Product.new(title:       "My Book Title",
                           description: "yyy",
-                          image_url:   "zzz.jpg")
+                          image_url:   "zzz.jpg",
+                          category: categories(:one))
     product.price = -1
     assert product.invalid?
     assert_equal ["must be greater than or equal to 0.01"],
@@ -33,7 +34,8 @@ class ProductTest < ActiveSupport::TestCase
     Product.new(title:       "My Book Title",
                 description: "yyy",
                 price:       1,
-                image_url:   image_url)
+                image_url:   image_url,
+                category: categories(:one))
   end
 
   test "image url" do
@@ -54,7 +56,8 @@ class ProductTest < ActiveSupport::TestCase
     product = Product.new(title:       products(:ruby).title,
                           description: "yyy", 
                           price:       1, 
-                          image_url:   "fred.gif")
+                          image_url:   "fred.gif",
+                          category: categories(:one))
 
     assert product.invalid?
     assert_equal ["has already been taken"], product.errors[:title]
@@ -64,7 +67,8 @@ class ProductTest < ActiveSupport::TestCase
     product = Product.new(title:       products(:ruby).title,
                           description: "yyy", 
                           price:       1, 
-                          image_url:   "fred.gif")
+                          image_url:   "fred.gif",
+                          category: categories(:one))
 
     assert product.invalid?
     assert_equal [I18n.translate('errors.messages.taken')],
@@ -75,7 +79,8 @@ class ProductTest < ActiveSupport::TestCase
     product = Product.new(title:       products(:ruby).title,
                           description: "yyy", 
                           price:       1, 
-                          image_url:   "fred.gif")
+                          image_url:   "fred.gif",
+                          category: categories(:one))
     assert product.invalid?
   end
   
