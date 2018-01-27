@@ -24,11 +24,11 @@ class OrderLineItemsController < ApplicationController
   # POST /order_line_items
   # POST /order_line_items.json
   def create
+    #@line_item = @order.add_line_items_from_cart(Cart.find(session[:cart_id]))
     @order_line_item = OrderLineItem.new(order_line_item_params)
-
     respond_to do |format|
       if @order_line_item.save
-        format.html { redirect_to @order_line_item, notice: 'Order line item was successfully created.' }
+        format.html { redirect_to @order_line_item }
         format.json { render :show, status: :created, location: @order_line_item }
       else
         format.html { render :new }
@@ -69,6 +69,7 @@ class OrderLineItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_line_item_params
-      params.fetch(:order_line_item, {})
+      #params.fetch(:order_line_item, {})
+      arams.require(:order_line_item).permit(:product_id, :order_id)
     end
 end

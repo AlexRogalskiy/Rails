@@ -59,9 +59,7 @@ ActiveRecord::Schema.define(version: 20180126202444) do
     t.string "pay_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "cart_id"
     t.text "comments"
-    t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
   create_table "products", force: :cascade do |t|

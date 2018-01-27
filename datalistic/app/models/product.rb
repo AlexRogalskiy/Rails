@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   belongs_to :category
   has_many :line_items, inverse_of: :product
   has_many :order_line_items, inverse_of: :product
-  #has_many :orders, through: :line_items
+  has_many :orders, through: :order_line_items
   
   before_destroy :ensure_not_referenced_by_any_line_item
 

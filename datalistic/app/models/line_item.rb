@@ -7,7 +7,7 @@ class LineItem < ApplicationRecord
   validates :discount, numericality: {greater_than_or_equal_to: 0.01, lower_than_or_equal_to: 1.00}
 
   def total_price
-    product.price * product.discount * quantity
+    product.total_price * quantity
   end
 
   def total_price_with_discount

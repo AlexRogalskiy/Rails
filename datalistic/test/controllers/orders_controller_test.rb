@@ -3,6 +3,12 @@ require 'test_helper'
 class OrdersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @order = orders(:one)
+    @update = {
+      address:  'Lorem Ipsum123456',
+      email:    'Wun@gmail.com',
+      name:     'lorem',
+      pay_type: 'Check'
+    }
   end
 
   test "should get index" do
@@ -31,7 +37,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create order" do
     assert_difference('Order.count') do
-      post orders_url, params: { order: { address: @order.address, email: @order.email, name: @order.name, pay_type: @order.pay_type } }
+      post orders_url, params: { order: { address: @update[:address], email: @update[:email], name: @update[:name], pay_type: @update[:pay_type] } }
     end
     assert_redirected_to store_url#order_url(Order.last)
   end
@@ -47,7 +53,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update order" do
-    patch order_url(@order), params: { order: { address: @order.address, email: @order.email, name: @order.name, pay_type: @order.pay_type } }
+    patch order_url(@order), params: { order: { address: @update[:address], email: @update[:email], name: @update[:name] } }
     #assert_redirected_to order_url(@order)
     assert_response :success
   end
