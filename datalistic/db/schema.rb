@@ -21,19 +21,19 @@ ActiveRecord::Schema.define(version: 20180126202444) do
     t.string "title"
     t.text "description"
     t.integer "order", default: 0
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "category_id"
     t.index ["category_id"], name: "index_categories_on_category_id"
   end
 
   create_table "line_items", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "cart_id"
+    t.integer "product_id", null: false
+    t.integer "cart_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity", default: 1
-    t.decimal "price", precision: 8, scale: 2
+    t.decimal "price", precision: 8, scale: 2, default: "0.0"
     t.decimal "discount", precision: 8, scale: 2, default: "1.0"
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["product_id"], name: "index_line_items_on_product_id"
@@ -41,11 +41,11 @@ ActiveRecord::Schema.define(version: 20180126202444) do
 
   create_table "order_line_items", force: :cascade do |t|
     t.integer "quantity", default: 1
-    t.decimal "price", precision: 8, scale: 2
+    t.decimal "price", precision: 8, scale: 2, default: "0.0"
     t.decimal "discount", precision: 8, scale: 2, default: "1.0"
     t.string "coupon"
-    t.integer "product_id"
-    t.integer "order_id"
+    t.integer "product_id", null: false
+    t.integer "order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_line_items_on_order_id"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20180126202444) do
     t.string "title"
     t.text "description"
     t.string "image_url"
-    t.decimal "price", precision: 8, scale: 2
+    t.decimal "price", precision: 8, scale: 2, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "discount", precision: 8, scale: 2, default: "1.0"

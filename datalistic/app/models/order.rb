@@ -8,7 +8,11 @@ class Order < ApplicationRecord
   def add_line_items_from_cart(cart)
     cart.line_items.each do |item|
       item.cart_id = nil
-      order_line_items << item
+      order_item = OrderLineItem.new(quantity: item.quantity,
+                                     price: item.price,
+                                     discount: item.discount,
+                                     product_id: item.product_id)
+      order_line_items << order_item
     end
   end
 end

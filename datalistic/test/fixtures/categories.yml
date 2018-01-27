@@ -8,8 +8,10 @@ one:
   title: Dave Thomas
   description: MyText
   order: 1
+  #category_id: nil
 
 two:
   title: Dave2 Thomas
   description: MyText
   order: 1
+  #category_id: nil

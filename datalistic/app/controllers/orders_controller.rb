@@ -32,11 +32,12 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
-
+    #Cart.find(980190962)
+    #Cart.find(session[:cart_id])
     respond_to do |format|
       if @order.save
-        #Cart.destroy(session[:cart_id])
-        #session[:cart_id] = nil
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
         format.html { redirect_to store_url, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else

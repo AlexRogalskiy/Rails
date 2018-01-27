@@ -24,7 +24,6 @@ class OrderLineItemsController < ApplicationController
   # POST /order_line_items
   # POST /order_line_items.json
   def create
-    #@line_item = @order.add_line_items_from_cart(Cart.find(session[:cart_id]))
     @order_line_item = OrderLineItem.new(order_line_item_params)
     respond_to do |format|
       if @order_line_item.save
@@ -37,8 +36,8 @@ class OrderLineItemsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /order_line_items/1
-  # PATCH/PUT /order_line_items/1.json
+  # PATCH/PUT /order_line_items
+  # PATCH/PUT /order_line_items/1.json/1
   def update
     respond_to do |format|
       if @order_line_item.update(order_line_item_params)
@@ -70,6 +69,6 @@ class OrderLineItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_line_item_params
       #params.fetch(:order_line_item, {})
-      arams.require(:order_line_item).permit(:product_id, :order_id)
+      params.require(:order_line_item).permit(:quantity, :price, :discount, :product_id, :order_id)
     end
 end

@@ -4,9 +4,10 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @category = categories(:one)
     @update = {
-      title:       'Lorem Ipsum123456',
+      title:       'Ipsum123456',
       description: 'Wibbles are fun!',
-      order:   1
+      order:   1,
+      category_id: nil
     }
   end
 
@@ -22,7 +23,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create category" do
     assert_difference('Category.count') do
-      post categories_url, params: { category: {title: @update[:title], description: @update[:description], order: @update[:order]} }
+      post categories_url, params: { category: {title: @update[:title], description: @update[:description], order: @update[:order], category_id: @update[:category_id]} }
     end
     assert_redirected_to category_url(Category.last)
   end
@@ -38,7 +39,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update category" do
-    patch category_url(@category), params: { category: {title: "categories(:two).title"} }
+    patch category_url(@category), params: { category: {title: "title", description: "description", order: 1, category_id: nil} }
     assert_redirected_to category_url(@category)
   end
 

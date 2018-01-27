@@ -54,8 +54,8 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 
   test "should update order" do
     patch order_url(@order), params: { order: { address: @update[:address], email: @update[:email], name: @update[:name] } }
-    #assert_redirected_to order_url(@order)
-    assert_response :success
+    assert_redirected_to order_url(@order)
+    #assert_response :success
   end
 
   test "should destroy order" do

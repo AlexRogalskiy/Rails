@@ -1,6 +1,7 @@
 class Category < ApplicationRecord
-	belongs_to :category
+	#belongs_to :category
 	has_many :products, inverse_of: :category
+	has_many :categories, inverse_of: :category
 	validates_associated :products
 
 	validates :title, :description, :order, presence: true

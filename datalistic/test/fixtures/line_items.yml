@@ -3,14 +3,17 @@
 one:
   product: ruby
   cart: one
+  price: 4.00
   #order: one
 
 two:
   product: ruby
   cart: one
+  price: 5.00
   #order: one
 
 ruby:
   product: ruby
   cart: ruby
+  price: 6.00
   #order: one
