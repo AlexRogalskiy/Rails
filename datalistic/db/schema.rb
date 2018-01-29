@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126202444) do
+ActiveRecord::Schema.define(version: 20180129154646) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20180126202444) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_categories_on_category_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.text "address", null: false
+    t.string "email", null: false
+    t.string "phone", null: false
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -43,7 +54,7 @@ ActiveRecord::Schema.define(version: 20180126202444) do
     t.integer "quantity", default: 1
     t.decimal "price", precision: 8, scale: 2, default: "0.0"
     t.decimal "discount", precision: 8, scale: 2, default: "1.0"
-    t.string "coupon"
+    t.string "coupon_code"
     t.integer "product_id", null: false
     t.integer "order_id", null: false
     t.datetime "created_at", null: false
@@ -56,10 +67,24 @@ ActiveRecord::Schema.define(version: 20180126202444) do
     t.string "name"
     t.text "address"
     t.string "email"
-    t.string "pay_type"
+    t.string "order_code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "comments"
+    t.integer "payment_id"
+    t.integer "client_id"
+    t.index ["client_id"], name: "index_orders_on_client_id"
+    t.index ["payment_id"], name: "index_orders_on_payment_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "pay_type", null: false
+    t.string "pay_status", null: false
+    t.datetime "payed_at"
+    t.string "pay_code", null: false
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|

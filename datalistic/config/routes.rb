@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :payments
+  resources :clients
   resources :order_line_items
   resources :categories
   resources :orders

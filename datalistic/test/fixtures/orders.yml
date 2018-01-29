@@ -4,10 +4,14 @@ one:
   name: Dave Thomas
   address: MyText
   email: dave@example.org
-  pay_type: Check
+  order_code: sadfa
+  payment: one
+  client: one
 
 two:
   name: MyString
   address: MyText
   email: MyString@example.org
-  pay_type: Check
+  order_code: sadfa
+  payment: one
+  client: one
