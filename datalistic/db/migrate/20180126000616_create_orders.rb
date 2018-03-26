@@ -2,7 +2,7 @@ class CreateOrders < ActiveRecord::Migration[5.1]
   def change
     create_table :orders do |t|
       t.string :name
-      t.text :address
+      #t.text :address
       t.string :email
       t.string :order_code, null: false
       # t.string :pay_type

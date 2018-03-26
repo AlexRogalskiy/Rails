@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :deliveries
+  resources :order_invoices
   resources :payments
   resources :clients
   resources :order_line_items

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Order Invoices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_invoices.each do |order_invoice| %>
+      <tr>
+        <td><%= link_to 'Show', order_invoice %></td>
+        <td><%= link_to 'Edit', edit_order_invoice_path(order_invoice) %></td>
+        <td><%= link_to 'Destroy', order_invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order Invoice', new_order_invoice_path %>

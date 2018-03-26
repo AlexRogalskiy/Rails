@@ -1,7 +1,6 @@
 class Order < ApplicationRecord
   #PAYMENT_TYPES = [ "Check", "Credit card", "Purchase order" ]
 
-  belongs_to :payment
   belongs_to :client
   has_many :order_line_items, dependent: :destroy, inverse_of: :order
   validates_associated :order_line_items

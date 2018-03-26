@@ -2,8 +2,8 @@ class Payment < ApplicationRecord
 	PAYMENT_TYPE = [ "Check", "Credit card", "Purchase order" ]
 	PAYMENT_STATUS = [ "Paid", "Unpaid", "Pending", "Free" ]
 
-	has_many :orders, dependent: :destroy, inverse_of: :payment
-	validates_associated :orders
+	has_many :order_invoices, dependent: :destroy, inverse_of: :payment
+	validates_associated :order_invoices
 
 	validates :pay_type, :pay_status, :pay_code, presence: true
 	validates :pay_type, inclusion: PAYMENT_TYPE
